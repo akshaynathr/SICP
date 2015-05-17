@@ -36,7 +36,7 @@
 
 (define (SAME-VAR? EXP VAR)
 	(AND (ATOM? EXP)
-	     (EQ? EXP VAR)
+	     (EQV? EXP VAR)
 	)
 )
 
@@ -45,7 +45,7 @@
 
 (define (SUM? EXP)
 	(AND (NOT (ATOM? EXP)) 
-	     (EQ? (CAR EXP) '+)	
+	     (EQV? (CAR EXP) '+)	
 	)
 )
 
@@ -65,7 +65,7 @@
 ;EXP is a product if it is not atomic and it contains '*' symbol
 (define (PRODUCT? EXP)
 	(AND (NOT (ATOM? EXP) )
-	     (EQ (CAR EXP) '*)
+	     (EQV? (CAR EXP) '*)
 	)
 )
 
@@ -87,5 +87,15 @@
 	)
 )
 
+
+
+
+;Driver procedure
+
+(define foo 
+	'(+ (* a (* x x)) (+ (* b x) c))
+)
+
+(deriv foo 'x)  ;funcction calling
 
 
