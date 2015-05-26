@@ -21,28 +21,33 @@
 ;midpoint 
 
 (define (midpoint s)
-	(let ( a (seg-start s) )
-	     ( b(seg-ens s) )
+	(let (( a (seg-start s) )
+	     ( b (seg-end s) )
 	)
-	(make-vector (average (xcor a) (average (xcor b) ) ) )
+	(make-vector (average (xcor a)(xcor b) (average (ycor a) (ycor b) ) ) 
 	)
+	)
+)
 
 
 (define (length s)
-	(let ( dx (- (xcor (seg-end s) ) 
+	(let ( ( dx (- (xcor (seg-end s) ) 
 		     (xcor (seg-beg s) )
-		  )
-	       dy (- (ycor (seg-end s) )
+		  ))
+	      ( dy (- (ycor (seg-end s) )
 		     (ycor (seg-beg s) )
 		 )
 		)
+	
+		(sqrt (+ (square dx ) (square dy) ) )
+		)
 	)
-	(sqrt (+ (square dx ) (square dy) ) )
-	)
+)
 
 (define (+vector v1 v2)
 	(make-vector(+ ( xcor v1) (xcor v2) )(+ (ycor v1) (ycor v2)) )
 ) 
+
 
 (define (scale v1 s)
 	(make-vector     (* s (xcor v1)  )
